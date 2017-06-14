@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="LanguagePlus.Progress"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LanguagePlus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="prog_master">
+        <Grid VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch" Background="#190078D7">
+            <TextBlock Text="Language +" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </Grid>
+        <Grid Margin="0,30,0,0">
+            <Grid x:Name="d_grid" Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#190078D7">
+                <Button Content="&#xE700;" FontSize="25" Height="50" Width="50" Background="#190078D7" FontFamily="Segoe MDL2 Assets"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="d_text" Text="Progress" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock x:Name="d_perc" Text="" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="20"/>
+                </StackPanel>
+                <ProgressBar x:Name="d_pbr" Margin="50,0,0,0" VerticalAlignment="Bottom" Height="1" Value="20" Background="#190078D7"/>
+            </Grid>
+            <ScrollViewer Margin="50,50,0,0">
+                <VariableSizedWrapGrid Margin="0,30,0,0" Orientation="Horizontal" ItemHeight="250" ItemWidth="250" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <VariableSizedWrapGrid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition/>
+                        </TransitionCollection>
+                    </VariableSizedWrapGrid.ChildrenTransitions>
+
+                    <Grid x:Name="s_grid" BorderThickness="0,0,0.5,0.5" Height="150" Width="150" Background="#190078D7" BorderBrush="#FF528DBB" Tapped="t_nav">
+                        <ProgressBar x:Name="s_pbr" HorizontalAlignment="Stretch" Margin="0,0" VerticalAlignment="Bottom" Height="1" Value="75" Background="#190078D7"/>
+                        <TextBlock x:Name="p_words" Text="" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Margin="5" FontFamily="Tempus Sans ITC"/>
+                        <TextBlock Text="&#xea86;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
+                        <TextBlock Text="Words" Foreground="Black" VerticalAlignment="Bottom" FontSize="25" Margin="10,0,10,20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="150" Background="#190078D7" BorderBrush="#FF528DBB">
+                        <ProgressBar HorizontalAlignment="Stretch" Margin="0,0" VerticalAlignment="Bottom" Height="1" Value="75" Background="#190078D7"/>
+                        <TextBlock Text="&#xec1b;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
+                        <TextBlock Text="Fluency" Foreground="Black" VerticalAlignment="Bottom" FontSize="25" Margin="10,0,10,20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="150" Background="#190078D7" BorderBrush="#FF528DBB">
+                        <ProgressBar HorizontalAlignment="Stretch" Margin="0,0" VerticalAlignment="Bottom" Height="1" Value="75" Background="#190078D7"/>
+                        <TextBlock Text="&#xe822;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
+                        <TextBlock Text="Daily quiz" Foreground="Black" VerticalAlignment="Bottom" FontSize="25" Margin="10,0,10,20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    </Grid>
+                </VariableSizedWrapGrid>
+            </ScrollViewer>
+            <SplitView x:Name="spv" Margin="0,50,0,0" Grid.Row="1" DisplayMode="CompactOverlay" OpenPaneLength="200" CompactPaneLength="50" HorizontalAlignment="Left" PaneBackground="#190078D7" BorderBrush="Black" BorderThickness="0,0,2,0">
+                <SplitView.Pane>
+                    <Grid>
+                        <ListBox SelectionMode="Single" Name="iconslist" SelectionChanged="svp_sc" Background="{x:Null}" Grid.RowSpan="2">
+                            <ListBox.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </ListBox.Transitions>
+                            <ListBoxItem Name="home">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="segoe mdl2 assets" Text="&#xE10f;" FontSize="24"/>
+                                    <TextBlock x:Name="homes" Text="Home" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="motion_l">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="segoe mdl2 assets" Text="&#xE109;" FontSize="24"/>
+                                    <TextBlock Text="Add word" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                        </ListBox>
+                    </Grid>
+                </SplitView.Pane>
+            </SplitView>
+        </Grid>
+    </Grid>
+</Page>

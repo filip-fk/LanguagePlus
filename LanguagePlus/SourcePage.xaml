@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="LanguagePlus.SourcePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LanguagePlus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <VariableSizedWrapGrid Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="SourceImage"
+       Width="200"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" Tapped="t_nav" />
+
+            <TextBlock x:Name="SourceT" Text="nice image" FontSize="15" Margin="10"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="SourceImage1"
+       Width="200"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" Tapped="t_nav" />
+
+            <TextBlock x:Name="SourceT1" Text="nice image" FontSize="15" Margin="10"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="SourceImage2"
+       Width="200"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" Tapped="t_nav" />
+
+            <TextBlock x:Name="SourceT2" Text="nice image" FontSize="15" Margin="10"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="SourceImage3"
+       Width="200"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" Tapped="t_nav" />
+
+            <TextBlock x:Name="SourceT3" Text="nice image" FontSize="15" Margin="10"/>
+        </StackPanel>
+    </VariableSizedWrapGrid>
+</Page>

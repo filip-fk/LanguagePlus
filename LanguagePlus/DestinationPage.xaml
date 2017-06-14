@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="LanguagePlus.DestinationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LanguagePlus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <VariableSizedWrapGrid Orientation="Horizontal" ItemHeight="300">
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="DestinationImage" HorizontalAlignment="Left" VerticalAlignment="Top"
+       Width="400"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" />
+            <TextBlock x:Name="DestinationT" Text="nice image" FontSize="35" Margin="10"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="DestinationImage1" HorizontalAlignment="Left" VerticalAlignment="Top"
+       Width="400"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" />
+            <TextBlock x:Name="DestinationT1" Text="nice image" FontSize="35" Margin="10"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="DestinationImage2" HorizontalAlignment="Left" VerticalAlignment="Top"
+       Width="400"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" />
+            <TextBlock x:Name="DestinationT2" Text="nice image" FontSize="35" Margin="10"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="DestinationImage3" HorizontalAlignment="Left" VerticalAlignment="Top"
+       Width="400"
+       Source="Assets/yosemite-7368x4239-5k-wallpapers-forest-osx-apple-mountains-3960.jpg" />
+            <TextBlock x:Name="DestinationT3" Text="nice image" FontSize="35" Margin="10"/>
+        </StackPanel>
+    </VariableSizedWrapGrid>
+</Page>

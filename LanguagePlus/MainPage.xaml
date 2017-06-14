@@ -7,7 +7,118 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid x:Name="main_master">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="narow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="desk.Visibility" Value="Collapsed"/>
+                        <Setter Target="phone.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="630"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="phone.Visibility" Value="Collapsed"/>
+                        <Setter Target="desk.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch">
+            <TextBlock Text="Language +" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" Style="{ThemeResource HeaderTextBlockStyle}" Text="Language +" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+        <Button Command="{Binding Path=GreetMeCommand}"/>
+        <ScrollViewer x:Name="desk" Margin="0,150,0,0" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <GridView ItemsSource="{x:Bind ViewModel.Recordings}" HorizontalContentAlignment="Center">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Recording">
+                        <VariableSizedWrapGrid Tag="{x:Bind name17}" HorizontalAlignment="Center" Margin="20" ItemHeight="100" ItemWidth="200">
+                            <TextBlock Text="{x:Bind Symbol}" HorizontalAlignment="Center" Margin="5,5,10,5" Foreground="#FF0078D7" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind ArtistName}" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind CompositionName}" HorizontalAlignment="Center" FontSize="15" Foreground="#ff898989" TextWrapping="WrapWholeWords" MaxWidth="150"/>
+                            </StackPanel>
+                        </VariableSizedWrapGrid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
+        <ScrollViewer x:Name="phone" Margin="0,180,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed">
+            <ListView ItemsSource="{x:Bind ViewModel.Recordings}" HorizontalAlignment="Stretch" Margin="20,0" SelectionChanged="phone_sc">
+                <ListView.Transitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition/>
+                    </TransitionCollection>
+                </ListView.Transitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Recording">
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
+                            <TextBlock Text="{x:Bind Symbol}" Margin="5,5,10,5" Foreground="#FF0078D7" FontFamily="Segoe MDL2 Assets" FontSize="25"/>
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind ArtistName}" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind CompositionName}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<Grid x:Name="s_grid_p" BorderThickness="0,0,0.5,0.5" Height="150" Width="200" Tapped="t_nav">
+                    <ProgressBar x:Name="s_pbr_p" HorizontalAlignment="Stretch" Margin="5,30" VerticalAlignment="Top" Height="30" Value="20" Background="#190078D7"/>
+                    <TextBlock x:Name="s_percentage_p" Text="20%" HorizontalAlignment="Center" Margin="5,35" VerticalAlignment="Top" FontFamily="Tempus Sans ITC"/>
+                    <TextBlock x:Name="s_text_p" Text="Progress" HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Top" FontSize="25" Margin="10,70,10,0" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="#FF898989" VerticalAlignment="Top" FontSize="15" Margin="10,110,10,0" FontFamily="Tempus Sans ITC" TextAlignment="Center">
+                        <Run Text="Words, Fluency,"/>
+                        <LineBreak/>
+                        <Run Text="Daily quiz"/>
+                    </TextBlock>
+                </Grid>
+                <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="200" Tapped="t_nav">
+                    <TextBlock Text="&#xe82d;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,30" FontFamily="Segoe MDL2 Assets" FontSize="40" Foreground="#FF0078D7"/>
+                    <TextBlock Text="Dictionary"  HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Top" FontSize="25" Margin="10,70,10,0" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="#FF898989" VerticalAlignment="Top" FontSize="15" Margin="10,110,10,0" FontFamily="Tempus Sans ITC" TextAlignment="Center">
+                        <Run Text="Words, Fluency,"/>
+                        <LineBreak/>
+                        <Run Text="Daily quiz"/>
+                    </TextBlock>
+                </Grid>
+                <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="200" Tapped="t_nav">
+                    <TextBlock Text="&#xeadf;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,30" FontFamily="Segoe MDL2 Assets" FontSize="40" Foreground="#FF0078D7"/>
+                    <TextBlock Text="Tasks"  HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Top" FontSize="25" Margin="10,70,10,0" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="#FF898989" VerticalAlignment="Top" FontSize="15" Margin="10,110,10,0" FontFamily="Tempus Sans ITC" TextAlignment="Center">
+                        <Run Text="Words, Fluency,"/>
+                        <LineBreak/>
+                        <Run Text="Daily quiz"/>
+                    </TextBlock>
+                </Grid>
+                <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="200" Tapped="t_nav">
+                    <TextBlock Text="&#xe115;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,30" FontFamily="Segoe MDL2 Assets" FontSize="40" Foreground="#FF0078D7"/>
+                    <TextBlock Text="Settings"  HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Top" FontSize="25" Margin="10,70,10,0" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="#FF898989" VerticalAlignment="Top" FontSize="15" Margin="10,110,10,0" FontFamily="Tempus Sans ITC" TextAlignment="Center">
+                        <Run Text="Words, Fluency,"/>
+                        <LineBreak/>
+                        <Run Text="Daily quiz"/>
+                    </TextBlock>
+                </Grid>
+                <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="200" Tapped="t_nav">
+                    <TextBlock Text="&#xe783;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,30" FontFamily="Segoe MDL2 Assets" FontSize="40" Foreground="#FF0078D7">
+                        -!<TextBlock.RenderTransform>
+                            <CompositeTransform Rotation="180"/>
+                        </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock Text="Info"  HorizontalAlignment="Center" Foreground="Black" VerticalAlignment="Top" FontSize="25" Margin="10,70,10,0" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Center" Foreground="#FF898989" VerticalAlignment="Top" FontSize="15" Margin="10,110,10,0" FontFamily="Tempus Sans ITC" TextAlignment="Center">
+                        <Run Text="Words, Fluency,"/>
+                        <LineBreak/>
+                        <Run Text="Daily quiz"/>
+                </TextBlock>
+    </Grid> -->
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </Page>
