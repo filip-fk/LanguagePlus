@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="LanguagePlus.MyUserControl1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LanguagePlus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Tapped="show_instr">
+            <ComboBox x:Name="lan_opt" FontFamily="Tempus Sans ITC" Margin="10" SelectionChanged="language_selected">
+                <ComboBoxItem x:Name="bg" Tag="bg" Content="Bulgarian" IsEnabled="False"/>
+                <ComboBoxItem x:Name="nl" Tag="nl" Content="Dutch" IsEnabled="False"/>
+                <ComboBoxItem x:Name="en" Tag="en" Content="English" IsEnabled="False"/>
+                <ComboBoxItem x:Name="fr" Tag="fr" Content="French" IsEnabled="False"/>
+                <ComboBoxItem x:Name="de" Tag="de" Content="German" IsEnabled="False"/>
+                <ComboBoxItem x:Name="ru" Tag="ru" Content="Russion" IsEnabled="False"/>
+                <ComboBoxItem x:Name="es" Tag="es" Content="Spanish" IsEnabled="False"/>
+            </ComboBox>
+            <TextBlock x:Name="l" Text="(L_)" VerticalAlignment="Center" FontFamily="Tempus Sans ITC" FontSize="20" FontWeight="Bold"/>
+        </StackPanel>
+        <Button Style="{StaticResource hover}" Margin="10" x:Name="del_btn" Height="35" Width="50" Content="&#xE107;" Click="del_l" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
+    </Grid>
+</UserControl>

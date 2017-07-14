@@ -1,0 +1,137 @@
+﻿<Page
+    x:Class="LanguagePlus.Words"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LanguagePlus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Storyboard x:Name="show">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="180"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="hide">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="180"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Pivot HorizontalAlignment="Center" HeaderFocusVisualPlacement="ItemHeaders">
+                <PivotItem x:Name="add">
+                    <PivotItem.Header>
+                        <TextBlock Text="&#xe109;" FontFamily="Segoe MDL2 Assets"/>
+                    </PivotItem.Header>
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="Add word" FontSize="25" FontWeight="Bold" FontFamily="Tempus Sans ITC"/>
+                            <Button x:Name="button" HorizontalAlignment="Right" Width="35" Height="25" Click="show_hide_AddPane" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#xE011;" RenderTransformOrigin="0.5,0.5">
+                                <Button.RenderTransform>
+                                    <CompositeTransform/>
+                                </Button.RenderTransform>
+                            </Button>
+                        </Grid>
+                        <StackPanel x:Name="stackPanel" Visibility="Visible">
+                            <StackPanel.RenderTransform>
+                                <CompositeTransform TranslateY="0"/>
+                            </StackPanel.RenderTransform>
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EdgeUIThemeTransition/>
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
+
+                            <TextBox x:Name="newW" MinWidth="150" PlaceholderText="New word" Margin="10"/>
+                            <StackPanel Orientation="Horizontal" Margin="10,0">
+                                <RadioButton x:Name="l1" Content="Langauge1" MinWidth="110" FontFamily="Tempus Sans ITC"/>
+                                <RadioButton x:Name="l2" Content="Langauge2" MinWidth="110" FontFamily="Tempus Sans ITC" Margin="10,0"/>
+                                <Button x:Name="l3" Width="40" Height="30" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#xe13c;" FontSize="20"/>
+                            </StackPanel>
+                            <TextBox x:Name="traW" MinWidth="150" PlaceholderText="Translation" Margin="10"/>
+                            <CheckBox Content="Translate automaticaly" Margin="10,0" FontFamily="Tempus Sans ITC" IsEnabled="False"/>
+                            <StackPanel Orientation="Horizontal" Margin="10">
+                                <RadioButton x:Name="l4" Content="New /" FontFamily="Tempus Sans ITC" MinWidth="70"/>
+                                <RadioButton x:Name="l5" Content="Old" FontFamily="Tempus Sans ITC" MinWidth="70"/>
+                                <TextBlock FontFamily="Tempus Sans ITC" Text="word" VerticalAlignment="Center" FontSize="20"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="btn_add" Content="Add" FontFamily="Tempus Sans ITC" Background="#330078D7" Width="100" Click="add_word" VerticalAlignment="Bottom"/>
+                                <Button x:Name="btn_cnl" Content="Cancel" FontFamily="Tempus Sans ITC" Background="#330078D7" Width="100" Click="show_hide_AddPane" Grid.Column="1" HorizontalAlignment="Right"/>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </PivotItem>
+                <PivotItem x:Name="edit">
+                    <PivotItem.Header>
+                        <TextBlock Text="&#xe104;" FontFamily="Segoe MDL2 Assets"/>
+                    </PivotItem.Header>
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="Edit word" FontSize="25" FontWeight="Bold" FontFamily="Tempus Sans ITC"/>
+                            <Button x:Name="button2" HorizontalAlignment="Right" Width="35" Height="25" Click="show_hide_AddPane" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#xE011;" RenderTransformOrigin="0.5,0.5">
+                                <Button.RenderTransform>
+                                    <CompositeTransform/>
+                                </Button.RenderTransform>
+                            </Button>
+                        </Grid>
+                        <TextBlock Text="To edit a word, plese select a check box. You can edit the word in both Languages or delete it." TextWrapping="Wrap" Margin="10,20,10,10" FontFamily="Tempus Sans ITC"/>
+                    </StackPanel>
+                </PivotItem>
+                <PivotItem x:Name="settings">
+                    <PivotItem.Header>
+                        <TextBlock Text="&#xe115;" FontFamily="Segoe MDL2 Assets"/>
+                    </PivotItem.Header>
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="Settings" FontSize="25" FontWeight="Bold" FontFamily="Tempus Sans ITC"/>
+                            <Button x:Name="button3" HorizontalAlignment="Right" Width="35" Height="25" Click="show_hide_AddPane" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#xE011;" RenderTransformOrigin="0.5,0.5">
+                                <Button.RenderTransform>
+                                    <CompositeTransform/>
+                                </Button.RenderTransform>
+                            </Button>
+                        </Grid>
+                        <TextBlock Text="To edit a word, plese select a check box. You can edit the word in both Languages or delete it." TextWrapping="Wrap" Margin="10,20,10,10" FontFamily="Tempus Sans ITC"/>
+                    </StackPanel>
+                </PivotItem>
+            </Pivot>
+            <Grid Margin="0,30,0,0" BorderBrush="Black" BorderThickness="0,0,0,2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="85"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border HorizontalAlignment="Right" Grid.Column="0" BorderBrush="Black" BorderThickness="0,0,2,0"/>
+                <Border HorizontalAlignment="Right" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,2,0"/>
+                <TextBlock Text="Language1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="25"/>
+                <TextBlock Text="Language2" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Tempus Sans ITC" FontSize="25" FontWeight="Bold" />
+                <StackPanel Grid.Column="2" >
+                    <TextBlock Text="Status" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" FontSize="25" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe930;" Foreground="#FF00A049" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                        <TextBlock Text="153" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="10"/>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe7ba;" Foreground="#FFFF8000" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                        <TextBlock Text="3" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="10"/>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe783;" Foreground="#FFC50000" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                        <TextBlock Text="9" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="10"/>
+                    </StackPanel>
+                </StackPanel>    
+            </Grid>
+            <StackPanel x:Name="word_cont" HorizontalAlignment="Stretch">
+                
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

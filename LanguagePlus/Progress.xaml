@@ -8,48 +8,44 @@
     mc:Ignorable="d">
 
     <Grid x:Name="prog_master">
-        <Grid VerticalAlignment="Top" Height="30" HorizontalAlignment="Stretch" Background="#190078D7">
-            <TextBlock Text="Language +" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <Grid VerticalAlignment="Top" Height="32" HorizontalAlignment="Stretch" Margin="48,0,0,0" Background="{ThemeResource SystemAccentColor}">
+            <TextBlock Text="Language +" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
         </Grid>
-        <Grid Margin="0,30,0,0">
-            <Grid x:Name="d_grid" Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#190078D7">
-                <Button Content="&#xE700;" FontSize="25" Height="50" Width="50" Background="#190078D7" FontFamily="Segoe MDL2 Assets"/>
+        <Grid Margin="0,32,0,0" x:Name="main">
+            <Grid x:Name="d_grid" Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{ThemeResource SystemAccentColorLight3}" Opacity="20">
+                <Button Content="&#xE700;" FontSize="25" Height="50" Width="48" Background="{ThemeResource SystemAccentColorLight1}" FontFamily="Segoe MDL2 Assets" Click="open_splt"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="d_text" Text="Progress" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="20"/>
                     <TextBlock x:Name="d_perc" Text="" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="20"/>
                 </StackPanel>
-                <ProgressBar x:Name="d_pbr" Margin="50,0,0,0" VerticalAlignment="Bottom" Height="1" Value="20" Background="#190078D7"/>
+                <ProgressBar x:Name="d_pbr" Margin="48,46,0,0" VerticalAlignment="Top" Height="1" Value="20" Background="{ThemeResource SystemAccentColorLight2}" Foreground="{ThemeResource SystemAccentColor}"/>
             </Grid>
-            <ScrollViewer Margin="50,50,0,0">
-                <VariableSizedWrapGrid Margin="0,30,0,0" Orientation="Horizontal" ItemHeight="250" ItemWidth="250" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <VariableSizedWrapGrid.ChildrenTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition/>
-                        </TransitionCollection>
-                    </VariableSizedWrapGrid.ChildrenTransitions>
 
-                    <Grid x:Name="s_grid" BorderThickness="0,0,0.5,0.5" Height="150" Width="150" Background="#190078D7" BorderBrush="#FF528DBB" Tapped="t_nav">
-                        <ProgressBar x:Name="s_pbr" HorizontalAlignment="Stretch" Margin="0,0" VerticalAlignment="Bottom" Height="1" Value="75" Background="#190078D7"/>
-                        <TextBlock x:Name="p_words" Text="" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Margin="5" FontFamily="Tempus Sans ITC"/>
-                        <TextBlock Text="&#xea86;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
-                        <TextBlock Text="Words" Foreground="Black" VerticalAlignment="Bottom" FontSize="25" Margin="10,0,10,20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
-                    </Grid>
-                    <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="150" Background="#190078D7" BorderBrush="#FF528DBB">
-                        <ProgressBar HorizontalAlignment="Stretch" Margin="0,0" VerticalAlignment="Bottom" Height="1" Value="75" Background="#190078D7"/>
-                        <TextBlock Text="&#xec1b;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
-                        <TextBlock Text="Fluency" Foreground="Black" VerticalAlignment="Bottom" FontSize="25" Margin="10,0,10,20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
-                    </Grid>
-                    <Grid BorderThickness="0,0,0.5,0.5" Height="150" Width="150" Background="#190078D7" BorderBrush="#FF528DBB">
-                        <ProgressBar HorizontalAlignment="Stretch" Margin="0,0" VerticalAlignment="Bottom" Height="1" Value="75" Background="#190078D7"/>
-                        <TextBlock Text="&#xe822;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="40"/>
-                        <TextBlock Text="Daily quiz" Foreground="Black" VerticalAlignment="Bottom" FontSize="25" Margin="10,0,10,20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
-                    </Grid>
-                </VariableSizedWrapGrid>
+            <ScrollViewer x:Name="scr_home1" Margin="50,50,0,0" Visibility="Visible">
+                <Pivot>
+                    <Pivot.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EdgeUIThemeTransition Edge="Bottom"/>
+                        </TransitionCollection>
+                    </Pivot.ItemContainerTransitions>
+                    <!--
+                    <Pivot.ItemTemplate>
+                        <DataTemplate x:DataType="local:language">
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
+                                <TextBlock Text="{x:Bind l2}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Pivot.ItemTemplate>
+                    -->
+                    <PivotItem>
+                        <TextBlock Text="en"/>
+                    </PivotItem>
+                </Pivot>
             </ScrollViewer>
-            <SplitView x:Name="spv" Margin="0,50,0,0" Grid.Row="1" DisplayMode="CompactOverlay" OpenPaneLength="200" CompactPaneLength="50" HorizontalAlignment="Left" PaneBackground="#190078D7" BorderBrush="Black" BorderThickness="0,0,2,0">
+            <SplitView x:Name="spv" Margin="0,50,0,0" Grid.Row="1" IsPaneOpen="False" DisplayMode="CompactOverlay" OpenPaneLength="250" CompactPaneLength="48" HorizontalAlignment="Left" PaneBackground="#190078D7" Opacity="20" BorderBrush="Black" BorderThickness="0,0,2,0">
                 <SplitView.Pane>
                     <Grid>
-                        <ListBox SelectionMode="Single" Name="iconslist" SelectionChanged="svp_sc" Background="{x:Null}" Grid.RowSpan="2">
+                        <ListBox SelectionMode="Single" Name="iconslist" Background="{x:Null}" Grid.RowSpan="2">
                             <ListBox.Transitions>
                                 <TransitionCollection>
                                     <AddDeleteThemeTransition/>
@@ -61,11 +57,23 @@
                                     <TextBlock x:Name="homes" Text="Home" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
                                 </StackPanel>
                             </ListBoxItem>
-                            <ListBoxItem Name="motion_l">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontFamily="segoe mdl2 assets" Text="&#xE109;" FontSize="24"/>
-                                    <TextBlock Text="Add word" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
-                                </StackPanel>
+                            <ListBoxItem Name="motion_l" Tapped="add_back">
+                                <Grid>
+                                    <ProgressBar VerticalAlignment="Bottom" Margin="-5,0,0,-5" Width="35" HorizontalAlignment="Left" Value="10" Foreground="{ThemeResource SystemAccentColor}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="symbol_mo" FontFamily="segoe mdl2 assets" Text="&#xea86;" FontSize="24"/>
+                                        <TextBlock x:Name="text_mo" Text="Words" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                    </StackPanel>
+                                </Grid>
+                            </ListBoxItem>
+                            <ListBoxItem Name="quiz" Tapped="add_back">
+                                <Grid>
+                                    <ProgressBar VerticalAlignment="Bottom" Margin="-5,0,0,-5" Width="35" HorizontalAlignment="Left" Value="60" Foreground="{ThemeResource SystemAccentColor}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="quiz_ic" FontFamily="segoe mdl2 assets" Text="&#xe822;" FontSize="24"/>
+                                        <TextBlock x:Name="Quiz" Text="Quiz" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                    </StackPanel>
+                                </Grid>
                             </ListBoxItem>
                         </ListBox>
                     </Grid>

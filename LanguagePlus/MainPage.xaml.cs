@@ -59,13 +59,15 @@ namespace LanguagePlus
             }
             catch { }
 
+            var color = new UISettings().GetColorValue(UIColorType.Accent);
+
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonBackgroundColor = color;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            titleBar.ButtonForegroundColor = Colors.Black;
+            titleBar.ButtonForegroundColor = Colors.White;
         }
-
+       
         public async void read_file()
         {
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
@@ -114,7 +116,6 @@ namespace LanguagePlus
         {
             VariableSizedWrapGrid grid10 = sender as VariableSizedWrapGrid;
             string path = grid10.Tag.ToString();
-            //redirect(new17);
 
             if (path == "p") { Nav_to_p(); }
             if (path == "d") { Nav_to_d(); }
@@ -130,6 +131,32 @@ namespace LanguagePlus
         {
             
         }
+
+        private void t_nav_f(object sender, TappedRoutedEventArgs e)
+        {
+
+            VariableSizedWrapGrid grid10 = sender as VariableSizedWrapGrid;
+            string path = grid10.Tag.ToString();
+
+            if (path == "p") { Nav_to_p(); }
+            if (path == "d") { Nav_to_d(); }
+            if (path == "t") { Nav_to_t(); }
+            if (path == "s") { Nav_to_s(); }
+            if (path == "i") { Nav_to_i(); }
+        }
+
+        private void t_nav_g(object sender, TappedRoutedEventArgs e)
+        {
+
+            StackPanel grid11 = sender as StackPanel;
+            string path = grid11.Tag.ToString();
+
+            if (path == "p") { Nav_to_p(); }
+            if (path == "d") { Nav_to_d(); }
+            if (path == "t") { Nav_to_t(); }
+            if (path == "s") { Nav_to_s(); }
+            if (path == "i") { Nav_to_i(); }
+        }
     }
 
     public class Recording
@@ -141,21 +168,6 @@ namespace LanguagePlus
 
         public Recording()
         {
-            
-        }
-
-        public ICommand GreetMeCommand
-        {
-            get
-            {
-                return new CommandHandler(() => this.GreetMeAction());
-            }
-        }
-
-        private void GreetMeAction()
-        {
-
-            ArtistName = "Hello";
 
         }
     }
@@ -207,25 +219,38 @@ namespace LanguagePlus
         }
     }
 
-    class CommandHandler : ICommand
+    public class language
     {
-        public event EventHandler CanExecuteChanged;
+        public string l1 { get; set; }
+        public string l2 { get; set; }
 
-        private Action _action;
-
-        public CommandHandler(Action action)
+        public language()
         {
-            this._action = action;
+
         }
+    }
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+    public class viewLanguage
+    {
+        ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        
+        private language defaultLanguage = new language();
+        public language DefaultLanguage { get { return this.defaultLanguage; } }
 
-        public void Execute(object parameter)
+        private ObservableCollection<language> languages = new ObservableCollection<language>();
+        public ObservableCollection<language> Languages { get { return this.languages; } }
+        public viewLanguage()
         {
-            this._action();
+            string value_l_s = localSettings.Values["lang_s"].ToString();
+            string[] split1 = value_l_s.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string l_ in split1)
+            {
+                this.languages.Add(new language()
+                {
+                    l2 = l_
+                });
+            }
         }
     }
 }

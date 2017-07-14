@@ -32,51 +32,35 @@ namespace LanguagePlus
 
         //public string reading10 { get { return $"{pbr_value10}"; } }
 
+            public viewLanguage viewModel { get; set; }
+
         public Progress()
         {
+            this.viewModel = new viewLanguage();
             this.InitializeComponent();
-            s_pbr.Value = 90;
-            write_file();
-            read_file();
 
             try
             {
                 if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.XamlCompositionBrushBase"))
                 {
+                    var color = new UISettings().GetColorValue(UIColorType.AccentLight3);
                     Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
                     myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.HostBackdrop;
-                    myBrush.TintColor = Color.FromArgb(255, 225, 225, 225);
-                    myBrush.FallbackColor = Color.FromArgb(255, 225, 225, 225);
+                    myBrush.TintColor = color;
+                    myBrush.FallbackColor = color;
                     myBrush.TintOpacity = 0.6;
 
-                    prog_master.Background = myBrush;
+                    spv.PaneBackground = myBrush;
+                    d_grid.Background = myBrush;
                 }
                 else
                 {
                     SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(255, 225, 225, 225));
 
-                    prog_master.Background = myBrush;
+                    //prog_master.Background = myBrush;
                 }
             }
             catch { }
-        }
-
-        public async void write_file()
-        {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile sampleFile = await storageFolder.CreateFileAsync("value.txt", CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(sampleFile, s_pbr.Value.ToString());
-        }
-
-        public async void read_file()
-        {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile sampleFile = await storageFolder.GetFileAsync("value.txt");
-            string text = await FileIO.ReadTextAsync(sampleFile);
-            p_words.Text = text + "%";
-            d_perc.Text = text + "%";
-            //d_pbr.Value = Convert.ToDouble(text);
-            //s_pbr.Value = Convert.ToDouble(text);
         }
 
         private void NavigateToDestinationPage()
@@ -126,7 +110,8 @@ namespace LanguagePlus
             }
         }
 
-        private void svp_sc(object sender, SelectionChangedEventArgs e)
+        /*
+         private void svp_sc(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
 
@@ -139,6 +124,22 @@ namespace LanguagePlus
             {
                 //nav to add.. and open
             }
+        }
+             */
+
+        private void word_view(object sender, TappedRoutedEventArgs e)
+        {
+            //rewrite
+        }
+
+        private void open_splt(object sender, RoutedEventArgs e)
+        {
+            spv.IsPaneOpen = !spv.IsPaneOpen;
+        }
+
+        private void add_back(object sender, TappedRoutedEventArgs e)
+        {
+            //rewrite
         }
     }
 }

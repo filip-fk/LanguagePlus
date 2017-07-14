@@ -7,7 +7,132 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="prog_master">
+        <Grid VerticalAlignment="Top" Height="32" HorizontalAlignment="Stretch" Margin="48,0,0,0" Background="{ThemeResource SystemAccentColor}">
+            <TextBlock Text="Language +" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
+        </Grid>
+        <Grid Margin="0,32,0,0" x:Name="main">
+            <Grid x:Name="d_grid" Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{ThemeResource SystemAccentColorLight3}" Opacity="20">
+                <Button Content="&#xE700;" FontSize="25" Height="50" Width="48" Background="{ThemeResource SystemAccentColorLight1}" FontFamily="Segoe MDL2 Assets" Click="open_splt"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="d_text" Text="Settings" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock x:Name="d_perc" Text="" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Tempus Sans ITC" FontWeight="Bold" FontSize="20"/>
+                </StackPanel>
+                <ProgressBar x:Name="d_pbr" Margin="48,0,0,0" VerticalAlignment="Bottom" Height="1" Value="100" Background="#190078D7"/>
+            </Grid>
 
+            <ScrollViewer x:Name="scr_home1" Margin="50,50,0,0" Visibility="Collapsed">
+                <StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                        <TextBlock Text="Home" FontSize="20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                        <CheckBox Content="Check me :)" FontFamily="Tempus Sans ITC"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20,10">
+                        <TextBlock Text="Home" FontSize="20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                        <CheckBox Content="Check me :(" IsThreeState="True" FontFamily="Tempus Sans ITC"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer x:Name="scr_langu" Margin="50,50,0,0" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                    <StackPanel>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                            <TextBlock Text="Laguage (App)" FontSize="20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                            <StackPanel x:Name="lan_pane_0">
+                                <StackPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </StackPanel.ChildrenTransitions>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                            <TextBlock Text="My laguage" FontSize="20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                            <StackPanel x:Name="lan_pane_1">
+                                <StackPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </StackPanel.ChildrenTransitions>
+                                <!--<local:MyUserControl1/>-->
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="New laguage" FontSize="20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                                <Button FontSize="20" Content="&#xE2b4;" VerticalAlignment="Center" Margin="10,0" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" ToolTipService.ToolTip="Show string" Click="show_all"/>
+                                <Button FontSize="20" Content="&#xEa99;" VerticalAlignment="Center" Margin="0,0" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" ToolTipService.ToolTip="Delete everything" Style="{StaticResource hover}" Click="dell_all"/>
+                            </StackPanel>
+                            <StackPanel x:Name="lan_pane_2">
+                                <StackPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </StackPanel.ChildrenTransitions>
+                                <!--<local:MyUserControl1/>-->
+                            </StackPanel>
+                            <Button Margin="10,0" Background="{x:Null}" Click="add_l">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xE109;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Add language" FontFamily="Tempus Sans ITC" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                            <StackPanel x:Name="delay" Orientation="Horizontal" Margin="10" Visibility="Collapsed">
+                                <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Foreground="#FFFF8B00"/>
+                                <TextBlock Text="It may take a while to sync." Margin="5,0" FontFamily="Tempus Sans ITC" Foreground="#FF424242"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer x:Name="scr_coloe" Margin="50,50,0,0" Visibility="Visible">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                    <StackPanel>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20">
+                            <TextBlock Text="Accent color" FontSize="20" FontFamily="Tempus Sans ITC" FontWeight="Bold"/>
+                            <StackPanel>
+                                <StackPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </StackPanel.ChildrenTransitions>
+                                <ToggleSwitch x:Name="accentColor_switch" IsOn="True" OnContent="Use Windows accent color" OffContent="Use Windows accent color" FontFamily="Tempus Sans ITC" Toggled="accentColor_on"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <SplitView x:Name="spv" Margin="0,50,0,0" Grid.Row="1" DisplayMode="CompactOverlay" OpenPaneLength="250" CompactPaneLength="48" HorizontalAlignment="Left" PaneBackground="#190078D7" BorderBrush="Black" BorderThickness="0,0,2,0">
+                <SplitView.Pane>
+                    <Grid>
+                        <ListBox SelectionMode="Single" Name="iconslist" Background="{x:Null}" Grid.RowSpan="2" SelectionChanged="slc_chn">
+                            <ListBox.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </ListBox.Transitions>
+                            <ListBoxItem Name="home" IsSelected="True">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="segoe mdl2 assets" Text="&#xE10f;" FontSize="24"/>
+                                    <TextBlock x:Name="homes" Text="Home" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="languages">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="segoe mdl2 assets" Text="&#xE164;" FontSize="24"/>
+                                    <TextBlock x:Name="lang" Text="My languages" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                            <ListBoxItem Name="Color10" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="segoe mdl2 assets" Text="&#xe2b1;" FontSize="24"/>
+                                    <TextBlock x:Name="color10" Text="Color" Margin="20,0,0,0" FontSize="20" FontFamily="Tempus Sans ITC"/>
+                                </StackPanel>
+                            </ListBoxItem>
+                        </ListBox>
+                    </Grid>
+                </SplitView.Pane>
+            </SplitView>
+        </Grid>
     </Grid>
 </Page>
